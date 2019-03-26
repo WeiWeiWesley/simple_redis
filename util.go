@@ -153,7 +153,6 @@ func (p *P) EXPIRE(key string, sec int) (interface{}, error) {
 	conn := p.Pool.Get()
 	defer conn.Close()
 
-
 	return conn.Do("EXPIRE", key, sec)
 }
 
@@ -163,4 +162,12 @@ func (p *P) HINCRBYFLOAT(key, field string, incr float64) (float64, error) {
 	defer conn.Close()
 
 	return redis.Float64(conn.Do("HINCRBYFLOAT", key, field, incr))
+}
+
+//TTL Returns the remaining time to live of a key that has a timeout.
+func (p *P) TTL(key string) (int64, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+
+	return redis.Int64(conn.Do("TTL", key))
 }
