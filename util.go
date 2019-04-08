@@ -171,3 +171,19 @@ func (p *P) TTL(key string) (int64, error) {
 
 	return redis.Int64(conn.Do("TTL", key))
 }
+
+//LPUSH Insert all the specified values at the head of the list stored at key.
+func (p *P) LPUSH(key, value string) (bool, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+
+	return redis.Bool(conn.Do("LPUSH", key, value))
+}
+
+//RPOP Removes and returns the last element of the list stored at key.
+func (p *P) RPOP(key string) (string, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+
+	return redis.String(conn.Do("RPOP", key))
+}
