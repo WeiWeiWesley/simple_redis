@@ -14,8 +14,8 @@ type P struct {
 var redisConn = make(map[string]*P)
 
 //SetPool set connection pool
-func SetPool(host string, connLimit int) {
-	redisConn[host] = &P{Pool: newPool(host, connLimit)}
+func SetPool(hostName, host string, connLimit int) {
+	redisConn[hostName] = &P{Pool: newPool(host, connLimit)}
 }
 
 //GetPool get connection pool
