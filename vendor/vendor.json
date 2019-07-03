@@ -1,0 +1,17 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "2UmMbNHc8FBr98mJFN1k8ISOIHk=",
+			"path": "github.com/garyburd/redigo/internal",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "zxm1ahSCAclqI4JIvyuRbytF2pA=",
+			"path": "github.com/garyburd/redigo/redis",
+			"revision": ""
+		}
+	],
+	"rootPath": "simple_redis"
+}
