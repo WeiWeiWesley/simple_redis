@@ -187,3 +187,11 @@ func (p *P) RPOP(key string) (string, error) {
 
 	return redis.String(conn.Do("RPOP", key))
 }
+
+//RPUSH Insert all the specified values at the head of the list stored at key.
+func (p *P) RPUSH(key, value string) (bool, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+
+	return redis.Bool(conn.Do("RPUSH", key, value))
+}
