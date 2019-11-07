@@ -220,3 +220,10 @@ func (p *P) HGETALLASINT(key string) (map[string]int, error) {
 
 	return redis.IntMap(conn.Do("HGETALL", key))
 }
+
+//HGETASFLOAT key field
+func (p *P) HGETASFLOAT(key string, field string) (float64, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+	return redis.Float64(conn.Do("HGET", key, field))
+}
