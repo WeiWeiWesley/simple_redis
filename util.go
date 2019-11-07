@@ -195,3 +195,28 @@ func (p *P) RPUSH(key, value string) (bool, error) {
 
 	return redis.Bool(conn.Do("RPUSH", key, value))
 }
+
+
+//HMSET2 key field value [field value ...]
+func (p *P) HMSET2(key string, hashData interface{}) (interface{}, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+
+	return conn.Do("HMSET", redis.Args{}.Add(key).AddFlat(hashData)...)
+}
+
+//GETASSTR key
+func (p *P) GETASSTR(key string) (string, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+
+	return redis.String(conn.Do("GET", key))
+}
+
+//HGETALLASINT Returns all fields and values of the hash stored at key.
+func (p *P) HGETALLASINT(key string) (map[string]int, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+
+	return redis.IntMap(conn.Do("HGETALL", key))
+}
