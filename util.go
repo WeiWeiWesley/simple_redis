@@ -227,3 +227,24 @@ func (p *P) HGETASFLOAT(key string, field string) (float64, error) {
 	defer conn.Close()
 	return redis.Float64(conn.Do("HGET", key, field))
 }
+
+//SCARD key
+func (p *P) SCARD(key string) (int64, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+	return redis.Int64(conn.Do("SCARD", key))
+}
+
+//SADD key member
+func (p *P) SADD(key string, field string) (bool, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+	return redis.Bool(conn.Do("SADD", key, field))
+}
+
+//SPOP key [count]
+func (p *P) SPOP(key string, count int64) ([]string, error) {
+	conn := p.Pool.Get()
+	defer conn.Close()
+	return redis.Strings(conn.Do("SPOP", key, count))
+}
