@@ -11,9 +11,11 @@ steps:
   commands:
     - golangci-lint run
 
-- name: golang_test
+- name: go_test
   image: golang:1.12-alpine
   environment:
     CGO_ENABLED: 0
+    GO111MODULE: on
   commands:
-    - go test
+    - go get -u --insecure ./...
+    - go test -cover
