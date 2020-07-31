@@ -12,7 +12,7 @@ steps:
     - golangci-lint run
 
 - name: go_test
-  image: golang:1.12-alpine
+  image: golang:1.12
   environment:
     CGO_ENABLED: 0
     GO111MODULE: on
