@@ -1,0 +1,19 @@
+workspace:
+    base: /go
+    path: src/github.com/WeiWeiWesley/simple_redis
+
+kind: pipeline
+name: simple_redis
+
+steps:
+- name: golangci-lint
+  image: golangci/golangci-lint:v1.23.3-alpine
+  commands:
+    - golangci-lint run
+
+- name: golang_test
+  image: golang:1.12-alpine
+  environment:
+    CGO_ENABLED: 0
+  commands:
+    - go test
