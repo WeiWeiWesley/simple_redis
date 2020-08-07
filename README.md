@@ -13,7 +13,7 @@ func init() {
 }
 ```
 
-2. use connection pool
+2. use connection pool 
 
 ```golang
 import "github.com/WeiWeiWesley/simple_redis"
